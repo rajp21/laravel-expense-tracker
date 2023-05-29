@@ -29,7 +29,20 @@
                 <h4>Login</h4>
               </div>
               <div class="card-body">
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                @if ($errors->any())
+                  <div class="alert alert-danger">
+                      {{ $errors->first() }}
+                  </div>
+                @endif
+
+                @if (request()->session()->has('error'))
+                    <div class="alert alert-danger mt-2">
+                        {{request()->session()->get('error')}}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{route('postLogin')}}" class="needs-validation" novalidate="">
+                  @csrf
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
