@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseType; 
+use App\Models\Expense; 
+use Carbon\Carbon; 
 
 
 class expenseController extends Controller
@@ -11,11 +13,16 @@ class expenseController extends Controller
     // 
 
     public function addExpense(){ 
-        return view('expense/addExpense'); 
+        $expTypes = ExpenseType::get(); 
+        
+      
+        
+        return view('expense/addExpense', ['expTypes' => $expTypes]); 
     }
 
 
     public function addExpenseType(){ 
+       
         return view('expense/addExpenseType');
     }
 
@@ -56,4 +63,46 @@ class expenseController extends Controller
         return redirect()->back(); 
     }
 
+    public function saveExpense(Request $request) { 
+        $request->validate([
+            'expenseTitle' => 'required|min:3', 
+            'amount' => 'required', 
+            'markAs' => 'required', 
+            'expenseOn' => 'required', 
+            'modeOfExpense' => 'required'
+        ]); 
+
+        // addming data to expense 
+
+
+
+        $expense = new Expense; 
+
+        $dateInput = $request->dateOfExpense; 
+        $date; 
+        if($dateInput) { 
+          $date = Carbon::createFromFormat('Y-m-d', $dateInput); 
+        }else { 
+            $date = Carbon::now(); 
+            $date = $date->format('Y-m-d');
+        }
+
+        
+
+        $expense->expenseTitle = strtolower($request->expenseTitle); 
+        $expense->amount = $request->amount; 
+        $expense->markAs = strtolower($request->markAs); 
+        $expense->expenseOn = $request->expenseOn; 
+        $expense->dateOfExpense = $date; 
+        $expense->modeOfExpense = strtolower($request->modeOfExpense); 
+
+        $expense->save(); 
+        
+        $request->session()->flash('success', "Expense Added successfully"); 
+        return redirect()->back(); 
+    
+
+
+        
+    }
 }

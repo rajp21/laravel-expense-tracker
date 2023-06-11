@@ -26,6 +26,15 @@ Route::group(['middleware' => ['userAuth']], function (){
     Route::get('/', function () {  return view('home');});
     Route::get('/expense/add-expense', [expenseController::class, "addExpense"])->name('add-expense'); 
     Route::get('/expnese/add-expense-type', [expenseController::class, "addExpenseType"])->name('add-expnese-type'); 
+    
     Route::post('/expnese/save-expense-type', [expenseController::class, "saveExpenseType"])->name('save-expense-type'); 
+
+
+    // save expense
+    Route::post('/expense/add-expense', [expenseController::class, "saveExpense"])->name('save-expense'); 
+    
+    
+    
+    
     Route::get('/logout', [authController::class, 'logout'])->name('logout'); 
 }); 
