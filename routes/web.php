@@ -32,8 +32,10 @@ Route::group(['middleware' => ['userAuth']], function (){
 
     // save expense
     Route::post('/expense/add-expense', [expenseController::class, "saveExpense"])->name('save-expense'); 
-    
-    
+
+    // view expense 
+    Route::get('/expense/view-expense', [expenseController::class, 'viewExpense'])->name('view-expense'); 
+        
     
     
     Route::get('/logout', [authController::class, 'logout'])->name('logout'); 

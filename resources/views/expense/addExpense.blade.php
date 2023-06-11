@@ -5,18 +5,16 @@
     <div class="main-content">
         <section class="section">
             <div class="row ">
-              
-                <div class="col-12 col-md-6 col-lg-12">
-                    <div class="card">
-                      <div class="card-header">
-                        <h4>Add Expense</h4>
-                      </div>
-
-                      @if (request()->session()->has('success'))
-                    <div class="alert alert-danger mt-2">
-                        {{request()->session()->get('success')}}
-                    </div>
-                @endif
+              <div class="col-12 col-md-6 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Add Expense</h4>
+                  </div>
+                  @if (request()->session()->has('success'))
+                        <div class="alert alert-success mt-2">
+                            {{request()->session()->get('success')}}
+                        </div>
+                    @endif
                       <div class="card-body">
                         <form action="{{route('save-expense')}}" method="POST">
                           @csrf

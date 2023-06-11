@@ -99,10 +99,12 @@ class expenseController extends Controller
         $expense->save(); 
         
         $request->session()->flash('success', "Expense Added successfully"); 
-        return redirect()->back(); 
-    
+        return redirect()->back();        
+    }
 
 
-        
+    public function viewExpense(Request $request){ 
+        $expenses = Expense::all(); 
+        return view('expense/viewExpense', ['expenses' => $expenses]); 
     }
 }

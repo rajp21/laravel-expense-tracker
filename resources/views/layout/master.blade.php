@@ -129,16 +129,14 @@
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="image"></i><span>Expenses</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{route('add-expense')}}"> Add Expense</a></li>
-                  <li><a href="gallery1.html">View Expense</a></li>
+                  <li><a href="{{ route('view-expense')}}">View Expense</a></li>
                   <li><a href="{{ route('add-expnese-type') }}">Add Expense Type</a></li>
 
                 </ul>
               </li>
             
             
-            <li><a class="nav-link" href="{{route('add-expense')}}"><i data-feather="shopping-bag"></i><span>Ad Expense </span></a></li>
-            <li><a class="nav-link" href="blank.html"><i data-feather="eye"></i><span>View Expense</span></a></li>
-            
+
            
             
             <li class="dropdown">
