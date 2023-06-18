@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\http\controllers\expenseController; 
 use App\http\controllers\authController; 
+use App\http\controllers\homeController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,8 @@ Route::group(['middleware' => ['isGuest']], function (){
 // userAuth
 Route::group(['middleware' => ['userAuth']], function (){ 
     
-    Route::get('/', function () {  return view('home');});
+    // Route::get('/', function () {  return view('home');})->name('home-dashboard');
+    Route::get('/',  [homeController::class, 'home'])->name('home-dashboard');
     Route::get('/expense/add-expense', [expenseController::class, "addExpense"])->name('add-expense'); 
     Route::get('/expnese/add-expense-type', [expenseController::class, "addExpenseType"])->name('add-expnese-type'); 
     

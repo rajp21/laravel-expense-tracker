@@ -37,7 +37,7 @@
                             <th>Expense On</th>
                             <th>Date of Expense</th>
                             <th>Mode of Expense</th>
-                            
+                            <th> Action</th>
                           </tr>
 
                           @foreach ($expenses as $expense)
@@ -62,10 +62,20 @@
                                 </td>
                                 <td>{{$expense->dateOfExpense}}</td>
                                 <td>{{$expense->modeOfExpense}}</td>
+                                <td>
+                                  <button class="btn btn-primary"><i class="fas fa-edit"> </i> </button>
+                                  <button class="btn btn-success"><i class="fas fa-eye"> </i> </button>
+                                  <button class="btn btn-danger"><i class="fas fa-trash"> </i>   </button>
+
+                                </td>
                             </tr>                              
                           @endforeach
+
                           
                         </table>
+
+                        {{ $expenses->links('pagination::bootstrap-4') }}
+
                       </div>
                     </div>
                   </div>

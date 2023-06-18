@@ -10,12 +10,12 @@
                   <div class="card-header">
                     <h4>Add Expense</h4>
                   </div>
-                  @if (request()->session()->has('success'))
-                        <div class="alert alert-success mt-2">
-                            {{request()->session()->get('success')}}
-                        </div>
-                    @endif
-                      <div class="card-body">
+                  <div class="card-body">
+                        @if (request()->session()->has('success'))
+                              <div class="alert alert-success mt-2">
+                                  {{request()->session()->get('success')}}
+                              </div>
+                          @endif
                         <form action="{{route('save-expense')}}" method="POST">
                           @csrf
                         <div class="form-group">
@@ -64,14 +64,17 @@
                                   @foreach ($expTypes as $type)
                                     <option value="{{$type->id}}">{{$type->expenseType}}</option>                                    
                                   @endforeach
-                                  {{-- <option value="rent">Rent </option>
-                                  <option value="messFood">Food (Mess)</option>
-                                  <option value="healthyAddonFood">Food ( Healthy Addon )</option>
-                                  <option value="junkFood">Food ( Junk Food ) </option>
-                                  <option value="necessaryShopping">Shopping (necessary)</option>
-                                  <option value="unnecessaryShopping">Shopping (Unnecessary)</option>
-                                  <option value="mobileRecharge">Mobile Recharge</option>
-                                  <option value="other">Other</option> --}}
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Expense Category * </label>
+                            <div class="input-group">
+                              <select class="form-control" name="expenseType" required>
+                                  <option value="">Not Selected</option>
+                                  <option value="fixed">Fixed</option>
+                                  <option value="notfixed">Not Fixed</option>
                               </select>
                             </div>
                           </div>

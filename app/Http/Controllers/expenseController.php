@@ -69,7 +69,8 @@ class expenseController extends Controller
             'amount' => 'required', 
             'markAs' => 'required', 
             'expenseOn' => 'required', 
-            'modeOfExpense' => 'required'
+            'modeOfExpense' => 'required',
+            'expenseType' => 'required'
         ]); 
 
         // addming data to expense 
@@ -95,7 +96,7 @@ class expenseController extends Controller
         $expense->expenseOn = $request->expenseOn; 
         $expense->dateOfExpense = $date; 
         $expense->modeOfExpense = strtolower($request->modeOfExpense); 
-
+        $expense->expenseType  = strtolower($request->expenseType); 
         $expense->save(); 
         
         $request->session()->flash('success', "Expense Added successfully"); 
@@ -104,7 +105,7 @@ class expenseController extends Controller
 
 
     public function viewExpense(Request $request){ 
-        $expenses = Expense::all(); 
+        $expenses = Expense::paginate(2); 
         return view('expense/viewExpense', ['expenses' => $expenses]); 
     }
 }
